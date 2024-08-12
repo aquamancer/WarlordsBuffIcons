@@ -1,0 +1,15 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.aquamancer.warlordsbufficons.mixin",
+  "compatibilityLevel": "JAVA_17",
+  "mixins": [
+    "ActionBarMixin"
+  ],
+  "client": [
+    "ActionBarMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
