@@ -12,6 +12,7 @@ public class ActionBarInfo {
     private int maxHealth = -1;
     private Text team;
     private List<Buff> buffList;
+    private int indexOfFirstBuff = -1;
 
     public void updateActionBarInfo(Text actionBarText) {
         this.buffList = parseBuffList(actionBarText);
@@ -28,6 +29,8 @@ public class ActionBarInfo {
 
         for (int i = 0; i < siblings.size(); i++) {
             if (isABuffOrDebuff(siblings.get(i))) {
+                if (indexOfFirstBuff == -1)
+                    indexOfFirstBuff = i;
                 String[] split = siblings.get(i).getString().split(":");
 
                 buffList.add(new Buff(split[0], Float.parseFloat(split[1]), siblings.get(i).getSiblings().get(0).getStyle().getColor()));
@@ -72,5 +75,8 @@ public class ActionBarInfo {
     }
     public List<Buff> getBuffList() {
         return this.buffList;
+    }
+    public int getIndexOfFirstBuff() {
+        return this.indexOfFirstBuff;
     }
 }

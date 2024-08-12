@@ -1,12 +1,12 @@
 package org.aquamancer.warlordsbufficons.client;
 
-import net.fabricmc.fabric.api.client.networking.v1.ClientPlayConnectionEvents;
-import net.fabricmc.fabric.api.networking.v1.PacketSender;
+import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.minecraft.client.MinecraftClient;
 import net.fabricmc.api.ClientModInitializer;
-import net.minecraft.client.gui.hud.MessageIndicator;
+import net.minecraft.client.gui.screen.Overlay;
 import net.minecraft.client.network.ClientPlayNetworkHandler;
 import net.minecraft.text.Text;
+import net.minecraft.network.packet.s2c.play.OverlayMessageS2CPacket;
 
 
 public class WarlordsBuffIconsClient implements ClientModInitializer {
@@ -15,7 +15,8 @@ public class WarlordsBuffIconsClient implements ClientModInitializer {
     public void onInitializeClient() {
         MinecraftClient client = MinecraftClient.getInstance();
 
-       // ClientPlayConnectionEvents.JOIN.register(this::onPlayerJoin);
+
+        ClientPlayNetworkHandler handler = client.getNetworkHandler();
 
     }
     public static void chat(String message) {
