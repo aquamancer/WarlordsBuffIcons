@@ -18,7 +18,7 @@ public class ActionBar {
     // i will assume all red names are debuffs. the rest are buffs. known buffs: green, yellow; debuffs: red
     // Buff duration is a float for graphical purposes
     private List<Buff> parseBuffList(Text actionBarText) {
-        buffList = new ArrayList<Buff>();
+        List<Buff> buffList = new ArrayList<Buff>();
         List<Text> siblings = actionBarText.getSiblings();
 
         for (int i = 0; i < siblings.size(); i++) {
