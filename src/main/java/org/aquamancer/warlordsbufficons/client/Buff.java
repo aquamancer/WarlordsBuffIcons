@@ -3,9 +3,9 @@ package org.aquamancer.warlordsbufficons.client;
 import net.minecraft.text.TextColor;
 
 public class Buff {
-    public String text;
-    public float duration;
-    public boolean isDebuff;
+    private String text;
+    private float duration;
+    private boolean isDebuff;
 
     public Buff(String text, float duration, TextColor color) {
         this.text = text;
@@ -21,5 +21,10 @@ public class Buff {
         this.text = text;
         this.duration = duration;
         this.isDebuff = isDebuff;
+    }
+
+    @Override
+    public String toString() {
+        return "text: " + text + ", duration: " + duration + ", isDebuff: " + isDebuff;
     }
 }

@@ -5,7 +5,9 @@ import net.minecraft.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ActionBar {
+import static org.aquamancer.warlordsbufficons.client.WarlordsBuffIconsClient.chat;
+
+public class ActionBarInfo {
     private int currentHealth = -1;
     private int maxHealth = -1;
     private Text team;
@@ -13,6 +15,9 @@ public class ActionBar {
 
     public void updateActionBarInfo(Text actionBarText) {
         this.buffList = parseBuffList(actionBarText);
+        for (int i = 0; i < buffList.size(); i++) {
+            chat(buffList.get(i).toString());
+        }
     }
     // the color of the text is a nested Style. the first one is the color of the name, second is the color of the colon (gray) third is duration(gold)
     // i will assume all red names are debuffs. the rest are buffs. known buffs: green, yellow; debuffs: red
@@ -66,6 +71,6 @@ public class ActionBar {
         }
     }
     public List<Buff> getBuffList() {
-        return buffList;
+        return this.buffList;
     }
 }
