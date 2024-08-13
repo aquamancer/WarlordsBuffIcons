@@ -51,8 +51,8 @@ public class ActionBarParser {
         this.isCompassDisplayed = false;
 
         for (int i = 0; i < siblings.size(); i++) {
-            // check if compass is displayed
-            if (siblings.get(i).getString().contains("Flag")) {
+            // check if compass is displayed. will break if the second sibling doesn't contain "Flag"
+            if (siblings.size() - i > 1 && siblings.get(i + 1).getString().contains("Flag")) {
                 this.isCompassDisplayed = true;
                 return null;
             }

@@ -15,25 +15,30 @@ public class Controller {
     private static MinecraftClient client = MinecraftClient.getInstance();
     private static ActionBarParser actionBarParser = new ActionBarParser();
     private static ActionBarWriter actionBarWriter = new ActionBarWriter();
+    private static IconRenderer iconRenderer = new IconRenderer();
 
     public static boolean cancelOverlayMessageS2CPacket = true;
 
     public static void handleNewOverlayMessagePacket(OverlayMessageS2CPacket packet) {
-        cancelOverlayMessageS2CPacket = true;
-        Text message = packet.getMessage();
+        try {
+            cancelOverlayMessageS2CPacket = true;
+            Text message = packet.getMessage();
 
-        client.inGameHud.getChatHud().clear(true);
-        chat(packet.getMessage().toString());
-        ActionBarData actionBarData = actionBarParser.parseActionBarInfo(message);
-        if (actionBarParser.isCompassDisplayed) {
-            cancelOverlayMessageS2CPacket = false;
-            return;
-        }
-        if (actionBarData != null) {
+            client.inGameHud.getChatHud().clear(true);
+            chat(packet.getMessage().toString());
+            ActionBarData actionBarData = actionBarParser.parseActionBarInfo(message);
+            if (actionBarParser.isCompassDisplayed) {
+                cancelOverlayMessageS2CPacket = false;
+                return;
+            }
             actionBarWriter.sendActionBar(actionBarData, client);
+
+        } catch (IndexOutOfBoundsException e) {
+            e.printStackTrace();
         }
 
-        List<Text> siblings = message.getSiblings();
+
+//        List<Text> siblings = message.getSiblings();
 //        for (Text sibling : siblings) {
 //            if (sibling.getSiblings().size() > 0 && sibling.getSiblings().get(0).getStyle().getColor() != null) {
 //                chat("sibling:{" + sibling.getString() + "}" + "color:{" + sibling.getSiblings().get(0).getStyle().getColor() + "}" + "style:{" + sibling.getSiblings().get(0).getStyle().toString() + "}");
