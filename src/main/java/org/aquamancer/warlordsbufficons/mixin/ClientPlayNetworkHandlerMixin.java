@@ -30,4 +30,5 @@ public abstract class ClientPlayNetworkHandlerMixin {
             ci.cancel();
         }
     }
+    // can modify packet with modifyVar
 }
